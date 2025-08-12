@@ -12,3 +12,15 @@
     1. Chroma
     2. Weaviate
     3. Qdrant
+
+# 2. 数据处理
+## 2.1 数据读取
+1. 使用LangChain的`PyMuPDFLoader`来读取知识库的PDF文件、`UnstructuredMarkdownLoader`来读取知识库的MD文件
+    - 每页一个文档数据类型(`Document`)
+## 2.2 文档分割
+1. 考虑单个文档可能超出模型上下文长度限制，需要对文档进行分割，按长度或固定规则分割成若干`chunk`，然后将每个`chunk`转化为词向量存储
+2. 检索时将以`chunk`为元单位，每次检索k个`chunk`作为知识，k可设定
+3. Langchain中文本分割器都根据 chunk_size (块大小)和 chunk_overlap (块与块之间的重叠大小)进行分割
+    - `chunk_size` 指每个块包含的字符或 Token （如单词、句子等）的数量
+    - `chunk_overlap` 指两个块之间共享的字符数量，用于保持上下文的连贯性，避免分割丢失上下文信息
+![alt text](image-1.png)
