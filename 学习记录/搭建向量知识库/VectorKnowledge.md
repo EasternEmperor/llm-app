@@ -26,3 +26,4 @@
 ![alt text](image-1.png)
 
 # 3. 搭建向量数据库
+1. 构建Chroma向量库：Chroma轻量且数据存储在内存中，易启动和使用
