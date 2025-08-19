@@ -28,3 +28,20 @@
 # 3. 搭建向量数据库
 1. 构建Chroma向量库：Chroma轻量且数据存储在内存中，易启动和使用
 2. Chroma的相似度搜索使用的是余弦距离
+
+# 4. 自定义Embedding
+1. LangChain支持用户自定义Embedding构建向量数据库，继承`Embeddings`类，并实现``
+```python
+from typing import List
+from langchain_core.embeddings import Embeddings
+
+class MyEmbeddings(Embeddings):
+    def __init__(self):
+        # 初始化，创建客户端等逻辑
+    
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        # 对字符串列表计算embedding
+
+    def embed_query(self, text: str) -> List[float]:
+        # 对字符串计算embedding
+```
