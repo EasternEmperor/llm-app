@@ -16,9 +16,16 @@ class Prompt:
     
     def get_prompt(self):
         return self.prompt
+    
+def get_coze_api_token(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.strip().startswith('token='):
+                return line.strip().split('=', 1)[1]
+    raise ValueError("token not found in token.env")
 
 def get_completion(prompt):
-    coze_api_token = 'pat_zUMv0wbwXeGcjkAJDCb0DKAdz5it1Yo2OP9h86KnoXwsuqdRegDpGv58juZzPoB1'
+    coze_api_token = get_coze_api_token('/root/llmapp/学习记录/token.env')
     bot_id = '7535126454850748451'
     coze_api_base = COZE_CN_BASE_URL
     coze = Coze(
