@@ -10,8 +10,8 @@ def get_api_key(env_path):
 
 def wenxin_embedding(text: str):
     # 读取token.env
-    api_key = get_api_key('/root/llmapp/学习记录/token.env')
     url = "https://qianfan.baidubce.com/v2/embeddings"
+    api_key = get_api_key('/root/llmapp/学习记录/token.env')
 
     payload = json.dumps({
         "model": "embedding-v1",
